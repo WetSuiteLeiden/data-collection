@@ -1,0 +1,56 @@
+# this was fetched the even slower way, and seemingly blocked by my ISP. Worth picking up what I have, though?
+frbr_fetched    = wetsuite.helpers.localdata.LocalKV('frbr_fetched.db',     key_type=str, value_type=bytes )
+
+ff_id2relevants = collections.defaultdict( set )
+
+for url in frbr_fetched.keys():
+    if url.startswith( 'https://repository.overheid.nl/frbr/lokalebekendmakingen/' ): 
+        # e.g. 'https://repository.overheid.nl/frbr/lokalebekendmakingen/9ef5ae7a0bd70cf0c1a663b61159a0c3/1/html/gmb-2023-537485.html',
+        id_ext = url.rsplit('/',1)[1]   # e.g. gmb-2023-537485.html
+        id = id_ext.split('.',1)[0]
+        ff_id2relevants[id].add( url )
+    elif url.startswith( 'https://repository.overheid.nl/frbr/officielepublicaties/' ):
+        # e.g. 'https://repository.overheid.nl/frbr/officielepublicaties/stcrt/2018/stcrt-2018-70179/1/metadataowms/metadata_owms.xml',
+        http,_,host,frbr,op,area, year, id, exnum, exform, fn = url.split('/')
+        ff_id2relevants[ id ].add(url)
+        #print( url.split('/'))
+        #break
+
+#ff_id2relevants['gmb-2023-537485']
+#ff_id2relevants['stcrt-2018-70179']
+
+
+
+
+
+    # if not fetched into store already, fetch into store
+    #fetch = False
+    #meta = bus_meta.get( path, missing_as_none=True )   # assume that also implies presence in bus_data; TODO: be a little more robust to broken off transfers
+    #if meta is None:
+    #    fetch = True
+    #else: # meta is not None
+    #    if meta_dict['size'] != remote_size or meta_dict['mtime'] != remote_mtime:
+    #        print( 'size %s->%s  mtime %s->%s'%(meta_dict['size'],remote_size,   meta_dict['mtime'], remote_mtime))
+    #        fetch = True
+
+
+        ### CHECK 1 We previously did a filezilla download, so have a bunch of files already we can avoid fetching again.
+        checkpath = os.path.join('/data/Docs/_', relpath.lstrip('/'))
+        #print( ckey, relpath, checkpath)
+        if False: # os.path.exists(checkpath):
+            
+            with open(checkpath,'rb') as cf:
+                filedata = cf.read()
+                if len(filedata) != meta_dict['size']:
+                    print('LATER; LOCAL file %r has size %s instead of intended size %d bytes'%(checkpath, len(filedata), meta_dict['size']))
+                    #raise ValueError('LATER; LOCAL file %r has size %s instead of intended size %d bytes'%(checkpath, len(filedata), meta_dict['size']))
+                    return 'decide-later'
+                else:
+                    #print('COPY FROM FS', checkpath)
+                    file_store.put( relpath, filedata )
+                    return 'copied-file'
+
+            #/1956/06/13/trb/trb-1956-50/trb-1956-50.html.zip
+            #_, year, month, day, area, id, path = relpath.split('/')
+            #if id in frbr_grouped_by_id:
+            #     if 
