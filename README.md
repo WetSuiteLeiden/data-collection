@@ -23,3 +23,25 @@ you can start using them today, even if they _don't_ have the most recent record
 (And if it's only somewhat out of date, you may have some luck asking us to update.)
 
 ## Quick summary of each
+
+### The things that have an API
+- [api_koop_repos](api_koop_repos.ipynb)
+- [api_koop_bwb](api_koop_bwb.ipynb) - fetches law text and metadata in XML form
+- [api_koop_cvdr](api_koop_cvdr.ipynb)
+- [api_koop_officielepublicaties](api_koop_officielepublicaties.ipynb)
+- [api_rechtspraaknl_codes](api_rechtspraaknl_codes.ipynb)
+- [api_rechtspraaknl_many](api_rechtspraaknl_many.ipynb)
+- [api_tweede_kamer_part1_first_api_and_parties](api_tweede_kamer_part1_first_api_and_parties.ipynb)
+- [api_tweede_kamer_part2_second_api_verslagen](api_tweede_kamer_part2_second_api_verslagen.ipynb)
+- [api_tweede_kamer_part3_both_apis_kamerdossiers](api_tweede_kamer_part3_both_apis_kamerdossiers.ipynb)
+
+### The things that have an API, partly
+- [mixed_gemeentes](mixed_gemeentes.ipynb) - fetches municipality names and some further information into a more digestible form
+
+### The things that we had to do some scraping for
+- [web_kansspelautoriteit](web_kansspelautoriteit.ipynb)
+- [web_raadvanstate_adviezen](web_raadvanstate_adviezen.ipynb)
+- [web_woobesluit](web_woobesluit.ipynb)
+- [web_internetconsultaties](web_internetconsultaties.ipynb)
+- [web_eurlex](web_eurlex.ipynb)
+	
