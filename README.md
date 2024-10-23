@@ -1,9 +1,8 @@
 # wetsuite-datacollect
 
 A collection of code, currently in the form of notebooks, 
-that were used to generate readymade datasets for the wetsuite project.
-
-This repository is mostly here to show our code for others to potentially use later.
+that were used to generate readymade datasets for the wetsuite project,
+and are left here to read to show our code for others to use later.
 
 **You may not need or want to run it at all**. That is...
 * if your needs are met by a few dozen to a few hundred documents
